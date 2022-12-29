@@ -6,8 +6,15 @@ from rest_framework.views import APIView
 from .models import Category
 from .serializers import CategorySerializer
 
+from rest_framework.viewsets import ModelViewSet
 
-class Categories(APIView):
+
+class CategoryViewSet(ModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+
+""" class Categories(APIView): 
     def get(self, request):
         all_categories = Category.objects.all()  # 모든 카테고리 가져와서
         serializer = CategorySerializer(all_categories, many=True)  # 시리얼라이징
@@ -23,7 +30,7 @@ class Categories(APIView):
             )  # 검증된 정보를 가지고 save (create메서드) 를 통해 새로운 Category 생성
             return Response(CategorySerializer(new_category).data)  # 생성된 Category 보여줌
         else:
-            return Response(serializer.errors)
+            return Response(serializer.errors) """
 
 
 """ @api_view(["GET", "POST"])
@@ -46,7 +53,7 @@ def categories(request):
             return Response(serializer.errors) """
 
 
-class CategoryDetail(APIView):
+""" class CategoryDetail(APIView):
     def get_object(self, pk):
         try:
             category = Category.objects.get(pk=pk)
@@ -73,7 +80,7 @@ class CategoryDetail(APIView):
 
     def delete(self, request, pk):
         self.get_object(pk).delete()
-        return Response(status=HTTP_204_NO_CONTENT)
+        return Response(status=HTTP_204_NO_CONTENT) """
 
 
 """ 
